@@ -7,6 +7,10 @@
 <ion-content>
 	<h3 text-center>Select your favorite Quote</h3>
 	<ion-list>
-		<button ion-item *ngFor="let quote of quoteCollection">{{ quote.category }}</button>
+		<button ion-item *ngFor="let quotesGroup of quoteCollection" [navPush]="quotesPage" [navParams]="quotesGroup">
+			<ion-icon item-left [name]="quotesGroup.icon"></ion-icon>
+			<h4>{{ quotesGroup.category | uppercase }}</h4>
+			<p>{{ quotesGroup.quotes.length }}</p>
+		</button>
 	</ion-list>
 </ion-content>
