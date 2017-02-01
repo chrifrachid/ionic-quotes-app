@@ -27,11 +27,15 @@ export class FavoritesPage {
     const modal: Modal = this.modalCtrl.create(QuotePage, quote);
     modal.onDidDismiss((remove: boolean) => {
       if (remove) {
-        this.quotesService.removeQuoteFromFavorite(quote);
-        this.quotes.splice(this.quotes.indexOf(quote), 1);
+        this.onRemoveFromFavorites(quote);
       }
     });
 
     modal.present();
+  }
+
+  onRemoveFromFavorites(quote: Quote) {
+    this.quotesService.removeQuoteFromFavorite(quote);
+    this.quotes.splice(this.quotes.indexOf(quote), 1);
   }
 }
