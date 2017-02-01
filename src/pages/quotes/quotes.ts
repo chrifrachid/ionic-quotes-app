@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavParams } from 'ionic-angular';
 import { Quote } from "../../data/quote.interface";
 
 @Component({
@@ -13,5 +13,9 @@ export class QuotesPage {
 
   ionViewDidLoad() {
     this.quotesGroup = this.navParams.data;
+  }
+
+  onAddToFavorite(quote: Quote) {
+
   }
 }
