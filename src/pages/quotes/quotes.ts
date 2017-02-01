@@ -20,7 +20,7 @@ export class QuotesPage {
     this.quotesGroup = this.navParams.data;
   }
 
-  onAddToFavorite(quote: Quote) {
+  onAddToFavorites(quote: Quote) {
     let alert: Alert = this.alertCtrl.create({
       title: 'Add Quote',
       subTitle: 'Are you sure?',
@@ -43,5 +43,13 @@ export class QuotesPage {
     });
 
     alert.present();
+  }
+
+  onRemoveFromFavorites(quote: Quote) {
+    this.quotesService.removeQuoteFromFavorite(quote);
+  }
+
+  isFavorite(quote: Quote): boolean {
+    return !!this.quotesService.isFavorite(quote);
   }
 }

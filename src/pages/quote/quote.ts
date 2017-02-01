@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NavParams, ViewController } from 'ionic-angular';
 import { Quote } from "../../data/quote.interface";
+import { QuotesService } from "../../services/quotes.service";
 
 @Component({
   selector: 'page-quote',
@@ -9,7 +10,9 @@ import { Quote } from "../../data/quote.interface";
 export class QuotePage implements OnInit {
   quote: Quote;
 
-  constructor(private navParams: NavParams, private viewCtrl: ViewController) {}
+  constructor(private navParams: NavParams,
+              private viewCtrl: ViewController,
+              private quotesService: QuotesService) {}
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad QuotePage');
@@ -19,7 +22,11 @@ export class QuotePage implements OnInit {
     this.quote = (<Quote>this.navParams.data);
   }
 
-  onCloseModal() {
-    this.viewCtrl.dismiss();
+  removeQuote(quote: Quote) {
+    this.quotesService.removeQuoteFromFavorite(quote);
+  }
+
+  onCloseModal(remove: boolean = false) {
+    this.viewCtrl.dismiss(remove);
   }
 }

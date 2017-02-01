@@ -11,10 +11,17 @@ export class QuotesService {
 		const quoteIndex = this.favoriteQuotes.findIndex((currentQuote: Quote) => {
 			return currentQuote.id == quote.id;
 		});
+
 		this.favoriteQuotes.splice(quoteIndex, 1);
 	}
 
 	getFavoriteQuotes(): Quote[] {
 		return this.favoriteQuotes.slice(); // Pass by copy
+	}
+
+	isFavorite(quote: Quote) {
+		return this.favoriteQuotes.find((quoteElement: Quote) => {
+			return quoteElement.id == quote.id;
+		});
 	}
 }
